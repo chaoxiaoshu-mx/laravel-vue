@@ -11,18 +11,19 @@ import Vuex from 'vuex'
 /**
  * Initializes Vuex on Vue.
  */
-Vue.use( Vuex )
+Vue.use( Vuex );
 
 /**
  * Imports all of the modules used in the application to build the data store.
  */
-import { cafes } from './modules/cafes.js'
-
+import { cafes } from './modules/cafes.js';
+import { users } from './modules/users.js';
 /**
  * Export the data store.
  */
 export default new Vuex.Store({
     modules: {
-    	cafes
+    	cafes,
+    	users
     }
 });
