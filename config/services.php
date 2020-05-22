@@ -33,9 +33,14 @@ return [
     'sparkpost' => [
         'secret' => env('SPARKPOST_SECRET'),
     ],
+    // github登录
     'github' => [
         'client_id' => env('GIT_CLIENT_ID'),
         'client_secret' => env('GIT_CLIENT_SECRET'),
         'redirect' => env('GIT_REDIRECT')
     ],
+    // 高德地图
+    'gaode' => [
+        'ws_api_key' => env('GAODE_MAPS_WS_API_KEY'),
+    ]
 ];

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Cafe;
 use App\Http\Requests\StoreCafeRequest;
-
+use App\Utilities\GaodeMaps;
 class CafesController extends Controller
 {
     /*
@@ -51,7 +51,12 @@ class CafesController extends Controller
 	    $cafe->city     = $request->get('city');
 	    $cafe->state    = $request->get('state');
 	    $cafe->zip      = $request->get('zip');
-
+        // 地址转换为坐标
+        $coordinates = GaodeMaps::geocodeAddress($cafe->address, $cafe->city, $cafe->state);
+        // 纬度
+        $cafe->latitude = $coordinates['lat'];
+        // 经度
+        $cafe->longitude = $coordinates['lng'];
 	    $cafe->save();
 
 	    return response()->json($cafe, 201);

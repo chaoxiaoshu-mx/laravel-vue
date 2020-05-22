@@ -7,7 +7,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
 
         <link rel="icon" type="image/x-icon" href="/favicon.ico">
-
+        
         <title>Roast</title>
 
         <script type='text/javascript'>
@@ -21,8 +21,7 @@
         <div id="app">
             <router-view></router-view>
         </div>
-
+        <script src="https://webapi.amap.com/maps?v=1.4.8&key=2df17693240ac9c4f4586105d5367aa6"></script>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
     </body>
 </html>
