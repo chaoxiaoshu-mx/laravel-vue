@@ -12,12 +12,14 @@ export default {
     },
 
     /**
+     * 获取单个咖啡店
 	 * GET /api/v1/cafes/{cafeID}
 	 */
 	getCafe: function( cafeID ){
 	    return axios.get( ROAST_CONFIG.API_URL + '/cafes/' + cafeID );
 	},
 	/**
+	 * 新增咖啡店
 	 * POST /api/v1/cafes
 	 */
 	postAddNewCafe: function( name, address, city, state, zip ){

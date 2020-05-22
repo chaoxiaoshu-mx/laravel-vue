@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use Illuminate\Http\Request;
+use Request;
 use App\Http\Controllers\Controller;
 use App\Models\Cafe;
 
@@ -46,7 +46,6 @@ class CafesController extends Controller
     */
     public function postNewCafe(){
 	    $cafe = new Cafe();
-
 	    $cafe->name     = Request::get('name');
 	    $cafe->address  = Request::get('address');
 	    $cafe->city     = Request::get('city');
