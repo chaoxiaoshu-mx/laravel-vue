@@ -23,6 +23,15 @@ Route::get( '/auth/{social}', 'Web\AuthenticationController@getSocialRedirect' )
 Route::get( '/auth/{social}/callback', 'Web\AuthenticationController@getSocialCallback' )
       ->middleware('guest');
 
+
+
+
+/**
+ * 测试路由
+ */
 Route::get('geocode', function () {
     return \App\Utilities\GaodeMaps::geocodeAddress('天城路1号', '杭州', '浙江');
 });
+
+
+

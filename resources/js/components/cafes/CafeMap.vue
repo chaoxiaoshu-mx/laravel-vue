@@ -64,6 +64,7 @@ export default {
 	methods: {
 		// 为所有咖啡店创建点标记
 		buildMarkers() {
+			console.log(this.cafes)
 			// 初始化点标记数组
 			this.markers = [];
 			// 自定义点标记
@@ -72,33 +73,35 @@ export default {
 			    image: image,  // Icon的图像
 			    imageSize: new AMap.Size(19, 33)   // 设置图标尺寸
 			});
+			console.log(this.cafes[0]);
+			if (this.cafes.length > 0) {
+				// 遍历所有咖啡店并为每个咖啡店创建点标记
+				for (var i = 0; i < this.cafes.length; i++) {
+				    // 通过高德地图 API 为每个咖啡店创建点标记并设置经纬度
+				    var marker = new AMap.Marker({
+				       position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
+				       title: this.cafes[i].name,
+				       icon: icon,   // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
+				    });
 
-			// 遍历所有咖啡店并为每个咖啡店创建点标记
-			for (var i = 0; i < this.cafes.length; i++) {
+				    // 为每个咖啡店创建信息窗体
+				    var infoWindow = new AMap.InfoWindow({
+				        content: this.cafes[i].name
+				    });
+				    this.infoWindows.push(infoWindow);
+				    
+				    // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
+				    marker.on('click', function () {
+				        infoWindow.open(this.getMap(), this.getPosition());
+				    });
 
-			    // 通过高德地图 API 为每个咖啡店创建点标记并设置经纬度
-			    var marker = new AMap.Marker({
-			       position: new AMap.LngLat(parseFloat(this.cafes[i].latitude), parseFloat(this.cafes[i].longitude)),
-			       title: this.cafes[i].name,
-			       icon: icon,   // 通过 icon 对象设置自定义点标记图标来替代默认蓝色图标
-			    });
-
-			    // 为每个咖啡店创建信息窗体
-			    var infoWindow = new AMap.InfoWindow({
-			        content: this.cafes[i].name
-			    });
-			    this.infoWindows.push(infoWindow);
-			    
-			    // 绑定点击事件到点标记对象，点击打开上面创建的信息窗体
-			    marker.on('click', function () {
-			        infoWindow.open(this.getMap(), this.getPosition());
-			    });
-
-			    // 将每个点标记放到点标记数组中
-			    this.markers.push(marker);
+				    // 将每个点标记放到点标记数组中
+				    this.markers.push(marker);
+				}
+				// 将所有点标记显示到地图上
+				this.map.add(this.markers);
 			}
-			// 将所有点标记显示到地图上
-			this.map.add(this.markers);
+			
 		},
 		// 从地图上清理点标记
 		clearMarkers() {

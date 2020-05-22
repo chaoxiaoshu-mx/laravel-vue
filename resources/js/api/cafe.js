@@ -22,15 +22,15 @@ export default {
 	 * 新增咖啡店
 	 * POST /api/v1/cafes
 	 */
-	postAddNewCafe: function( name, address, city, state, zip ){
-	    return axios.post( ROAST_CONFIG.API_URL + '/cafes',
-	        {
-	            name: name,
-	            address: address,
-	            city: city,
-	            state: state,
-	            zip: zip
-	        }
+	postAddNewCafe: function (name, locations, website, description, roaster) {
+	    return axios.post(ROAST_CONFIG.API_URL + '/cafes',
+	       {
+	           name: name,
+	           locations: locations,
+	           website: website,
+	           description: description,
+	           roaster: roaster
+	       }
 	    );
 	}
 }
