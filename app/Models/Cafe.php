@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\User;
 class Cafe extends Model
 {
     public function brewMethods()
@@ -21,5 +21,20 @@ class Cafe extends Model
 	public function parent()
 	{
 	    return $this->hasOne(Cafe::class, 'id', 'parent');
+	}
+
+	public function likes()
+	{
+		return $this->belongsToMany( User::class, 'users_cafes_likes', 'cafe_id', 'user_id');
+	}
+
+	public function userLike()
+	{
+	    return $this->belongsToMany(User::class, 'users_cafes_likes', 'cafe_id', 'user_id')->where('user_id', auth('api')->id());
+	}
+
+	public function tags()
+	{
+	    return $this->belongsToMany(Tag::class, 'cafes_users_tags', 'cafe_id', 'tag_id');
 	}
 }
