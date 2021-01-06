@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
-    "axios": "^0.19",
+    "axios": "^0.21",
     "cross-env": "^5.1",
     "es6-promise": "^4.2.8",
     "foundation-sites": "^6.6.3",
